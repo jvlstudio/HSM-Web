@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `passes` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`event_id` int(11) NOT NULL,
+`event_name` varchar(100) NOT NULL,
+`event_slug` varchar(50) NOT NULL,
+`color` enum('green','gold','red') DEFAULT 'green',
+`name` varchar(25) NOT NULL,
+`slug` varchar(25) NOT NULL,
+`price_from` varchar(50) NOT NULL,
+`price_to` varchar(50) NOT NULL,
+`valid_to` varchar(50) NOT NULL,
+`email` varchar(140) NOT NULL,
+`description` varchar(70) NOT NULL,
+`days` enum('single','multiple') DEFAULT 'single',
+`dates` varchar(255) NOT NULL,
+`show_dates` enum('kYes','kNo') DEFAULT 'kNo',
+`is_multiple` enum('kYes','kNo') DEFAULT 'kNo',
+`date_register` datetime NULL,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;

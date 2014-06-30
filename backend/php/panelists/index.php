@@ -1,0 +1,1 @@
+<?php require_once("php/{$args->dir}/list.php") ;?>

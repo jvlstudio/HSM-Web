@@ -1,0 +1,5 @@
+[06-Jun-2014 17:51:39] PHP Warning:  implode() [<a href='function.implode'>function.implode</a>]: Invalid arguments passed in /home/brand947/subdomains/ikomm.apps/hsm5/painel/php/events/handle.php on line 15
+[06-Jun-2014 17:51:39] PHP Fatal error:  Call to undefined method kEvents::dateFrom() in /home/brand947/subdomains/ikomm.apps/hsm5/painel/php/events/handle.php on line 86
+[06-Jun-2014 17:54:17] PHP Fatal error:  Call to undefined method DateTime::createFromFormat() in /home/brand947/subdomains/ikomm.apps/hsm5/painel/php/events/handle.php on line 94
+[06-Jun-2014 18:28:08] PHP Warning:  include_once(php/home/add.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/brand947/subdomains/ikomm.apps/hsm5/painel/index.php on line 32
+[06-Jun-2014 18:28:08] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening 'php/home/add.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/brand947/subdomains/ikomm.apps/hsm5/painel/index.php on line 32

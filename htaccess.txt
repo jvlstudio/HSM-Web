@@ -1,0 +1,6 @@
+# Don't rewrite files or directores
+RewriteEngine On
+#RewriteBase /
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?args=$1
