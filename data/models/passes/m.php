@@ -9,6 +9,9 @@ interface iPasses
 	public function forEventId($key, $param="");
 	public function forEventSlug($key, $param="");
 	# ...
+	public function delete($id);
+	# ...
+	public function events();
 	public function colors();
 	public function days();
 	public function labelForColor($color);
@@ -20,38 +23,14 @@ class Passes extends Functions implements iPasses
 	
 	public function restObject( $obj )
 	{
-		global $Events, $Panelists;
-			
+		global $Events;
 		$obj = (object) $obj;
-	
-		$rest			= new stdClass;
-		$event			= $Events->forId($obj->event_id);
-		
-		$_event			= new stdClass;
-		$_event->id		= $event->id;
-		$_event->name	= $event->name;
-		$_event->slug	= $event->slug;
-		
-		$_meta			= new stdClass;
-		$_meta->days	= $obj->days;
-		$_meta->dates	= $Events->datesFrom($event);
-		$_meta->show_dates	= $obj->show_dates;
-		$_meta->is_multiple	= $obj->is_multiple;
-		
-		# rest..
-		$rest->id		= $obj->id;
-		$rest->event	= $_event;
-		$rest->color	= $obj->color;
-		$rest->name		= $obj->name;
-		$rest->slug		= $obj->slug;
-		$rest->price_from	= $obj->price_from;
-		$rest->price_to		= $obj->price_to;
-		$rest->valid_to	= $obj->valid_to;
-		$rest->email	= $obj->email;
-		$rest->description = $obj->description;
-		$rest->meta		= $_meta;
-		
-		return $rest;
+		$event = $Events->forId($obj->event_id);
+		$event = $Events->restObject($event);
+		if(!$obj->show_dates) $obj->show_dates = "kNo";
+		if(!$obj->is_multiple) $obj->is_multiple = "kNo";
+		$obj->dates = $event->dates;
+		return $obj;
 	}
 	public function restObjects( $array )
 	{
@@ -60,7 +39,7 @@ class Passes extends Functions implements iPasses
 			$result[] = $this->restObject($object);
 		return $result;
 	}
-	
+
 	# ...
 	
 	public function select( $param="" )
@@ -106,13 +85,28 @@ class Passes extends Functions implements iPasses
 		return $r;
 	}
 	
+	# ... 
+	public function delete($id)
+	{
+		$query	= "DELETE FROM {$this->tb} WHERE id='{$id}'";
+		$this->db->query($query);
+	}
+	
 	# ...
 	
+	public function events()
+	{
+		$ev1 = array("id" => "99", "slug" => "damodaran14", "label" => "Seminário HSM - Damodaran on Valuation");
+		$ev2 = array("id" => "100", "slug" => "gestao14", "label" => "Fórum HSM - Gestão e Liderança 2014");
+		$ev3 = array("id" => "101", "slug" => "familybiz14", "label" => "Fórum HSM - Family Business 2014");
+		
+		return array((object) $ev1, (object) $ev2, (object) $ev3);
+	}
 	public function colors()
 	{
-		$ev1 = array("slug" => "green", "label" => "Verde");
-		$ev2 = array("slug" => "gold", "label" => "Dourado");
-		$ev3 = array("slug" => "red", "label" => "Vermelho");
+		$ev1 = array("slug" => "green", "label" => "Passe Single");
+		$ev2 = array("slug" => "gold", "label" => "Passe Premium");
+		$ev3 = array("slug" => "red", "label" => "Passe Corporate");
 		
 		return array((object) $ev1, (object) $ev2, (object) $ev3);
 	}

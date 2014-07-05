@@ -58,6 +58,7 @@ class Events extends Functions implements iEvents
 		return $result;
 	}
 	
+
 	# ...
 	
 	public function select( $param="" )

@@ -44,13 +44,16 @@ class Agenda extends Functions implements iAgenda
 		$_pan->slug		= $panelist->slug;
 		//$_pan->image	= $panelist->image;
 		$_pan->description = $panelist->description;
-		$_pan->theme	= $_theme;
+		$_pan->theme_title	= $_theme->title;
+		$_pan->theme_description = $_theme->description;
 		
 		$_date			= new stdClass;
 		$_date->id		= $obj->date;
 		$_date->date	= $dates[$obj->date];
 		$_date->start	= $obj->date_start;
 		$_date->end		= $obj->date_end;
+		
+		$_pan->date		= $_date;
 		
 		# rest..
 		$rest->id		= $obj->id;
