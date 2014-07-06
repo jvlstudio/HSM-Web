@@ -17,7 +17,7 @@ class Magazines extends Functions implements iMagazines
 	public function restObject( $obj )
 	{
 		$obj = (object) $obj;
-		$obj->picture = "http://apps.ikomm.com.br/hsm5/panelists/{$obj->picture}";
+		$obj->picture = "http://apps.ikomm.com.br/hsm5/uploads/magazines/{$obj->picture}";
 		return $obj;
 	}
 	public function restObjects( $array )
