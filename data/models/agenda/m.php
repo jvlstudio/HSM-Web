@@ -42,7 +42,7 @@ class Agenda extends Functions implements iAgenda
 		$_pan->id		= $panelist->id;
 		$_pan->name		= $panelist->name;
 		$_pan->slug		= $panelist->slug;
-		//$_pan->image	= $panelist->image;
+		$_pan->picture	= "http://apps.ikomm.com.br/hsm5/panelists/{$panelist->picture}";
 		$_pan->description = $panelist->description;
 		$_pan->theme_title	= $_theme->title;
 		$_pan->theme_description = $_theme->description;

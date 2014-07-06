@@ -5,31 +5,24 @@ get_header(''); ?>
 <form method="post" action="<?php permalink("/backend/{$args->dir}/handle");?>" id="form_values" enctype="multipart/form-data">
 <input type="hidden" name="scope" value="<?php echo $args->page;?>" />
 <ul id="form" class="form">
-	<li><h1>Palestrantes > Adicionar</h1></li>
+	<li><h1>Revistas > Adicionar</h1></li>
 	<!-- -->
 	<li><h1>Info</h1></li>
 	<li>
-		<label>Evento</label><br/>
-		<select name="event_id" required>
-			<?php 
-			$results = $Events->select(); 
-			foreach ($results as $res): $res = (object) $res; ?>
-			<option value="<?php echo $res->id;?>"><?php echo $res->name;?></option>
-			<?php 
-			endforeach; ?>
-		</select>
+		<label>Nome (Edição) *</label><br/>
+		<input type="text" name="name" maxlength="70" required />
 	</li>
 	<li>
-		<label>Nome *</label><br/>
-		<input type="text" name="name" maxlength="50" required />
+		<label>Descrição (Ano de publicação)*</label><br/>
+		<textarea name="description" required></textarea>
 	</li>
 	<li>
 		<label>Imagem</label><br/>
 		<input type="file" name="picture" />
 	</li>
 	<li>
-		<label>Descrição</label><br/>
-		<textarea name="description"></textarea>
+		<label>Link para compra</label><br/>
+		<input type="text" name="link" maxlength="200" />
 	</li>
 	<!-- -->
 	<li><button>ADICIONAR</button></li>

@@ -1,7 +1,7 @@
 <?php
 
 # default object
-$Tb = $Panelists;
+$Tb = $Books;
 
 # vars
 $scope	= $_POST['scope'];
@@ -22,13 +22,14 @@ switch ($scope):
 	
 	# ...
 	case "add":
-		$rid = $Tb->add("event_id={$_POST['event_id']}",
-						"name={$_POST['name']}",
+		$rid = $Tb->add("name={$_POST['name']}",
 						"description={$_POST['description']}",
+						//"tiny_description={$_POST['tiny_description']}",
 						"slug={$slug}",
+						"author_name={$_POST['author_name']}",
+						"author_description={$_POST['author_description']}",
+						"link={$_POST['link']}",
 						"picture={$picture}",
-						//"theme_title={$_POST['theme_title']}",
-						//"theme_description={$_POST['theme_description']}",
 						"date_register={$now}" );
 		# return
 		return_inside("/backend/{$args->dir}");
@@ -37,20 +38,21 @@ switch ($scope):
 	# ...
 	case "edit":
 		$rid = $Tb->update(	$id,
-							"event_id={$_POST['event_id']}",
 							"name={$_POST['name']}",
 							"description={$_POST['description']}",
+							//"tiny_description={$_POST['tiny_description']}",
 							"slug={$slug}",
-							"picture={$picture}"
-							//"theme_title={$_POST['theme_title']}",
-							/*"theme_description={$_POST['theme_description']}"*/ );
+							"author_name={$_POST['author_name']}",
+							"author_description={$_POST['author_description']}",
+							"link={$_POST['link']}",
+							"picture={$picture}" );
 		# return
 		return_inside("/backend/{$args->dir}");
 		break;
 		
 	# ...
 	case "remove":
-		$Tb->delete($id);
+		$Tb->deleteItem($id);
 		# return
 		echo "ok";
 		break;

@@ -6,7 +6,7 @@ $sy = 'selected="selected"'; $sn = "";
 # ...
 get_header(''); ?>
 
-<form method="post" action="<?php permalink("/backend/{$args->dir}/handle");?>" id="form_values">
+<form method="post" action="<?php permalink("/backend/{$args->dir}/handle");?>" id="form_values"  enctype="multipart/form-data">
 <input type="hidden" name="scope" value="<?php echo $args->page;?>" />
 <input type="hidden" name="id" value="<?php echo $target_id;?>" />
 
@@ -19,7 +19,7 @@ get_header(''); ?>
 		<select name="event_id" required>
 			<?php 
 			$results = $Events->select(); 
-			foreach ($results as $res):
+			foreach ($results as $res): $res = (object) $res;
 			$s = ($info->event_id == $res->id ? 'selected="selected"' : ""); ?>
 			<option <?php echo $s;?> value="<?php echo $res->id;?>"><?php echo $res->name;?></option>
 			<?php 
@@ -29,6 +29,15 @@ get_header(''); ?>
 	<li>
 		<label>Nome *</label><br/>
 		<input type="text" name="name" maxlength="50" required value="<?php echo $info->name;?>" />
+	</li>
+	<li>
+		<label>Imagem</label><br/>
+		<input type="file" name="picture" />
+		<?php 
+		if($info->picture): ?>
+		<div><img src="<?php echo HOST;?>/uploads/panelists/<?php echo $info->picture;?>" alt="" /></div>
+		<?php 
+		endif; ?>
 	</li>
 	<li>
 		<label>Descrição</label><br/>
